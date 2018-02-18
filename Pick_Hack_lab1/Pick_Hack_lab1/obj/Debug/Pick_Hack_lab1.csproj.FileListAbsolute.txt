@@ -1,0 +1,7 @@
+C:\Users\Hacker\source\repos\University\MBKS\Pick_Hack_lab1\Pick_Hack_lab1\bin\Debug\Pick_Hack_lab1.exe.config
+C:\Users\Hacker\source\repos\University\MBKS\Pick_Hack_lab1\Pick_Hack_lab1\bin\Debug\Pick_Hack_lab1.exe
+C:\Users\Hacker\source\repos\University\MBKS\Pick_Hack_lab1\Pick_Hack_lab1\bin\Debug\Pick_Hack_lab1.pdb
+C:\Users\Hacker\source\repos\University\MBKS\Pick_Hack_lab1\Pick_Hack_lab1\obj\Debug\Pick_Hack_lab1.csprojResolveAssemblyReference.cache
+C:\Users\Hacker\source\repos\University\MBKS\Pick_Hack_lab1\Pick_Hack_lab1\obj\Debug\Pick_Hack_lab1.csproj.CoreCompileInputs.cache
+C:\Users\Hacker\source\repos\University\MBKS\Pick_Hack_lab1\Pick_Hack_lab1\obj\Debug\Pick_Hack_lab1.exe
+C:\Users\Hacker\source\repos\University\MBKS\Pick_Hack_lab1\Pick_Hack_lab1\obj\Debug\Pick_Hack_lab1.pdb
