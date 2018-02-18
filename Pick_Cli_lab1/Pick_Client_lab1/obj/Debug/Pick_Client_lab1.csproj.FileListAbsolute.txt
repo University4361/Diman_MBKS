@@ -1,0 +1,10 @@
+C:\Users\Lavrov\source\repos\University\MBKS\Pick_Client_lab1\Pick_Client_lab1\bin\Debug\Pick_Client_lab1.exe.config
+C:\Users\Lavrov\source\repos\University\MBKS\Pick_Client_lab1\Pick_Client_lab1\bin\Debug\Pick_Client_lab1.exe
+C:\Users\Lavrov\source\repos\University\MBKS\Pick_Client_lab1\Pick_Client_lab1\bin\Debug\Pick_Client_lab1.pdb
+C:\Users\Lavrov\source\repos\University\MBKS\Pick_Client_lab1\Pick_Client_lab1\obj\Debug\Pick_Client_lab1.csprojResolveAssemblyReference.cache
+C:\Users\Lavrov\source\repos\University\MBKS\Pick_Client_lab1\Pick_Client_lab1\obj\Debug\Pick_Client_lab1.Form1.resources
+C:\Users\Lavrov\source\repos\University\MBKS\Pick_Client_lab1\Pick_Client_lab1\obj\Debug\Pick_Client_lab1.Properties.Resources.resources
+C:\Users\Lavrov\source\repos\University\MBKS\Pick_Client_lab1\Pick_Client_lab1\obj\Debug\Pick_Client_lab1.csproj.GenerateResource.Cache
+C:\Users\Lavrov\source\repos\University\MBKS\Pick_Client_lab1\Pick_Client_lab1\obj\Debug\Pick_Client_lab1.csproj.CoreCompileInputs.cache
+C:\Users\Lavrov\source\repos\University\MBKS\Pick_Client_lab1\Pick_Client_lab1\obj\Debug\Pick_Client_lab1.exe
+C:\Users\Lavrov\source\repos\University\MBKS\Pick_Client_lab1\Pick_Client_lab1\obj\Debug\Pick_Client_lab1.pdb
