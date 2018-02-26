@@ -35,7 +35,7 @@ namespace Pick_Hack_lab1
         {
             Console.WriteLine("File: " + e.FullPath + " " + e.ChangeType);
 
-            if (e.ChangeType == WatcherChangeTypes.Created)
+            if (e.ChangeType == WatcherChangeTypes.Created || e.ChangeType == WatcherChangeTypes.Deleted)
                 return;
 
             int k = 0;
@@ -70,11 +70,10 @@ namespace Pick_Hack_lab1
         }
 
         [PermissionSet(SecurityAction.Demand)]
-        public static void Observe()
+        private static void Observe()
         {
             FileSystemWatcher myWatcher = new FileSystemWatcher(HackPath)
             {
-                NotifyFilter = NotifyFilters.LastAccess | NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName,
                 Filter = "*.txt"
             };
 
