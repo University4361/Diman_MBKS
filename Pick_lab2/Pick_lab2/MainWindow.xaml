@@ -5,39 +5,211 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pick_lab2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="377.312" Width="713.15">
+        MinHeight="265" MinWidth="625"
+        Title="MainWindow" Height="202.842" Width="523.584">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="157*"/>
             <RowDefinition Height="155*"/>
         </Grid.RowDefinitions>
-        <GroupBox Header="Objects" Margin="10,10,242,0" Height="139" VerticalAlignment="Top">
+        <GroupBox Header="Objects" Margin="10,10,242,10" Grid.RowSpan="2">
             <Grid>
                 <StackPanel HorizontalAlignment="Stretch">
-                    <DockPanel LastChildFill="True" Margin="0 5 0 5">
-                        <RadioButton GroupName="test" Name="FirstRB"  VerticalAlignment="Center" Margin="10 0 10 0"/>
-                        <TextBox Name="FirstTB" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="Auto" />
+                    <DockPanel Name="Dock1" LastChildFill="True" Margin="0 5 0 5">
+                        <RadioButton Content="Object 1" GroupName="test" Name="FirstRB"  VerticalAlignment="Center" Margin="10 0 10 0"/>
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="a"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="b"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="c"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="d"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="e"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="f"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="g"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="k"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="l"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="m"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="n"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="o"/>
+                        </StackPanel>
                     </DockPanel>
 
-                    <DockPanel LastChildFill="True" Margin="0 5 0 5">
-                        <RadioButton GroupName="test" Name="SecondRB" VerticalAlignment="Center" Margin="10 0 10 0"/>
-                        <TextBox Name="SecondTB" Height="23" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                    <DockPanel Name="Dock2" LastChildFill="True" Margin="0 5 0 5">
+                        <RadioButton Content="Object 2" GroupName="test" Name="SecondRB" VerticalAlignment="Center" Margin="10 0 10 0"/>
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="a"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="b"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="c"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="d"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="e"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="f"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="g"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="k"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="l"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="m"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="n"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="o"/>
+                        </StackPanel>
                     </DockPanel>
 
-                    <DockPanel LastChildFill="True" Margin="0 5 0 5"/>
+                    <DockPanel Name="Dock3" LastChildFill="True" Margin="0 5 0 5">
+                        <RadioButton Content="Object 3" GroupName="test" Name="ThridRB" VerticalAlignment="Center" Margin="10 0 10 0"/>
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="a"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="b"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="c"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="d"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="e"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="f"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="g"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="k"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="l"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="m"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="n"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
+                            <CheckBox/>
+                            <Label Content="o"/>
+                        </StackPanel>
+                    </DockPanel>
                 </StackPanel>
 
                 <Button Name="SaveButton" Content="Save" Width="75" Click="SaveButton_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10"/>
             </Grid>
         </GroupBox>
-        <TextBox Name="InputTB"  Margin="0,11,10,10" TextWrapping="Wrap" TextChanged="InputTB_TextChanged" HorizontalAlignment="Right" Width="227" Grid.Row="1"/>
-        <TextBox Name="OutputTB" Margin="0,10,10,13" TextWrapping="Wrap" Width="227" HorizontalAlignment="Right"/>
-        <GroupBox Header="Elements" Margin="10,149,242,10" Grid.RowSpan="2">
-            <Grid Margin="0,0,0,0">
-                <Button Name="SaveElementsButton" Content="Save elements" Margin="0,0,10,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="95"/>
-                <TextBox Name="ElementsTB" Margin="10,10,10,35" TextWrapping="Wrap"/>
-            </Grid>
-        </GroupBox>
+        <TextBox Name="InputTB"  Margin="0,13,10,10" TextWrapping="Wrap" TextChanged="InputTB_TextChanged" HorizontalAlignment="Right" Width="227"/>
+        <TextBox Name="OutputTB" Margin="0,10,10,11" TextWrapping="Wrap" Width="227" HorizontalAlignment="Right" Grid.Row="1"/>
 
     </Grid>
 </Window>

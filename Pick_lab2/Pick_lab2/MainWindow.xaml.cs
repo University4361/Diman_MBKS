@@ -20,30 +20,49 @@ namespace Pick_lab2
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string _elements = "abcdefghijklmnopqrstuvwxyz1234567890";
+        private string _elements;
         private string _currentCode;
         private MyUser _currentAccessUser;
 
         public MainWindow()
         {
             InitializeComponent();
-            ElementsTB.Text = _elements;
         }
 
-        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        private void SetupUser(DockPanel panel)
         {
-            FirstTB.Text = string.Empty;
-            SecondTB.Text = string.Empty;
+            _elements = string.Empty;
+            _currentCode = string.Empty;
+
+            foreach (var view in panel.Children)
+            {
+                if (view is StackPanel stack)
+                {
+                    foreach (var item in stack.Children)
+                    {
+                        if (item is CheckBox check)
+                        {
+                            _currentCode += check.IsChecked ?? false ? 1 : 0;
+                        }
+                        else if (item is Label label)
+                        {
+                            _elements += label.Content;
+                        }
+                    }
+                }
+            }
+
+            _currentAccessUser = new MyUser(_currentCode, _elements);
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             if (FirstRB.IsChecked ?? false)
-                _currentCode = FirstTB.Text;
+                SetupUser(Dock1);
             if (SecondRB.IsChecked ?? false)
-                _currentCode = SecondTB.Text;
-
-            _currentAccessUser = new MyUser(_currentCode, ElementsTB.Text);
+                SetupUser(Dock2);
+            if (ThridRB.IsChecked ?? false)
+                SetupUser(Dock3);
 
             OutputTB.Text = string.Empty;
 
@@ -56,8 +75,12 @@ namespace Pick_lab2
 
         private void InputTB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (string.IsNullOrEmpty(_currentCode) || _currentAccessUser == null)
-                return;
+            if (FirstRB.IsChecked ?? false)
+                SetupUser(Dock1);
+            if (SecondRB.IsChecked ?? false)
+                SetupUser(Dock2);
+            if (ThridRB.IsChecked ?? false)
+                SetupUser(Dock3);
 
             OutputTB.Text = string.Empty;
 
