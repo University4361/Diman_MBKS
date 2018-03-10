@@ -14,9 +14,9 @@
         </Grid.RowDefinitions>
         <GroupBox Header="Subjects" Margin="10,10,242,10" Grid.RowSpan="2">
             <Grid>
-                <StackPanel HorizontalAlignment="Stretch">
-                    <DockPanel Name="Dock1" LastChildFill="True" Margin="0 5 0 5">
-                        <RadioButton Content="Subject 1" GroupName="test" Name="FirstRB"  VerticalAlignment="Center" Margin="10 0 10 0"/>
+                <StackPanel Name="MainStack" HorizontalAlignment="Stretch">
+                    <DockPanel LastChildFill="True" Margin="0 5 0 5">
+                        <RadioButton Content="Subject 1" GroupName="test" VerticalAlignment="Center" Margin="10 0 10 0"/>
                         <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
                             <CheckBox/>
                             <Label Content="a"/>
@@ -78,8 +78,8 @@
                         </StackPanel>
                     </DockPanel>
 
-                    <DockPanel Name="Dock2" LastChildFill="True" Margin="0 5 0 5">
-                        <RadioButton Content="Subject 2" GroupName="test" Name="SecondRB" VerticalAlignment="Center" Margin="10 0 10 0"/>
+                    <DockPanel LastChildFill="True" Margin="0 5 0 5">
+                        <RadioButton Content="Subject 2" GroupName="test" VerticalAlignment="Center" Margin="10 0 10 0"/>
                         <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
                             <CheckBox/>
                             <Label Content="a"/>
@@ -141,8 +141,8 @@
                         </StackPanel>
                     </DockPanel>
 
-                    <DockPanel Name="Dock3" LastChildFill="True" Margin="0 5 0 5">
-                        <RadioButton Content="Subject 3" GroupName="test" Name="ThridRB" VerticalAlignment="Center" Margin="10 0 10 0"/>
+                    <DockPanel LastChildFill="True" Margin="0 5 0 5">
+                        <RadioButton Content="Subject 3" GroupName="test" VerticalAlignment="Center" Margin="10 0 10 0"/>
                         <StackPanel Orientation= "Vertical"  Margin="2 0 2 0">
                             <CheckBox/>
                             <Label Content="a"/>
@@ -206,12 +206,15 @@
                 </StackPanel>
 
                 <Button Name="SaveButton" Content="Save" Width="75" Click="SaveButton_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10"/>
+                <Button x:Name="GrantButton" Content="Grant" Width="75" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10" Click="GrantButton_Click"/>
+                <Button x:Name="RemoveButton" Content="Remove" Width="75" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="90,0,0,10" Click="RemoveButton_Click"/>
+                <Button x:Name="CreateButton" Content="Create" Width="75" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="170,0,0,10" Click="CreateButton_Click"/>
             </Grid>
         </GroupBox>
         <TextBox Name="InputTB"  Margin="0,41,10,10" TextWrapping="Wrap" TextChanged="InputTB_TextChanged" HorizontalAlignment="Right" Width="227"/>
         <TextBox Name="OutputTB" Margin="0,41,10,11" TextWrapping="Wrap" Width="227" HorizontalAlignment="Right" Grid.Row="1"/>
-        <Label Content="Input" HorizontalAlignment="Left" Margin="380,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Output" HorizontalAlignment="Left" Margin="380,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Input" HorizontalAlignment="Right" Margin="0,10,199,0" VerticalAlignment="Top"/>
+        <Label Content="Output" HorizontalAlignment="Right" Margin="0,10,189,0" Grid.Row="1" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

@@ -3,13 +3,15 @@ using System.Linq;
 
 namespace Pick_lab2
 {
-    class MyUser
+    public class MyUser
     {
         private string _template;
         public Dictionary<char, byte> AccessDictionary;
+        public string Name { get; set; }
 
-        public MyUser(string accessString, string template)
+        public MyUser(string name, string accessString, string template)
         {
+            Name = name;
             _template = template;
             InitializeDictionary(accessString);
         }

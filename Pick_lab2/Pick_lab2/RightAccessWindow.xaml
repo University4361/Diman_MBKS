@@ -1,0 +1,28 @@
+﻿<Window x:Class="Pick_lab2.RightAccessWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pick_lab2"
+        mc:Ignorable="d"
+        Title="RightAccessWindow" Height="300" Width="850">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="From" Margin="10,10,10,55">
+            <Grid Margin="0">
+                <StackPanel Orientation="Vertical" Name="FromSP" Margin="0"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="To" Margin="10,10,10,55" Grid.Column="1">
+            <Grid Margin="0">
+                <StackPanel Orientation="Vertical" Name="ToSP" Margin="0"/>
+            </Grid>
+        </GroupBox>
+        <DockPanel Name="RulesDP" Grid.ColumnSpan="2" LastChildFill="True" Margin="10,0,90,10" Height="40" VerticalAlignment="Bottom"/>
+        <Button Content="Grant" Grid.Column="1" Margin="0,0,10,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="GrantButton_Click"/>
+
+    </Grid>
+</Window>
