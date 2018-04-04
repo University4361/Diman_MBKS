@@ -1,4 +1,11 @@
-﻿using System.Windows;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Pick_lab2
@@ -8,49 +15,155 @@ namespace Pick_lab2
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string _elements;
-        private string _currentCode;
         private MyUser _currentAccessUser;
+        private string _currentUsersPath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "data.txt");
+        private string _currentTemplatePath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "template.txt");
+        private const string _initialTemplate = "abcdefg";
+        private const int _initialSubjectsCount = 4;
+        private Dictionary<string, DockPanel> _panels = new Dictionary<string, DockPanel>();
+        private List<RadioButton> _radios = new List<RadioButton>();
 
         public MainWindow()
         {
             InitializeComponent();
+
+            Closed += MainWindow_Closed;
+
+            InitialSetup();
+            SetupMainStack();
+            SetupEvents();
         }
 
-        private void SetupUser(DockPanel panel)
+        private void MainWindow_Closed(object sender, System.EventArgs e)
         {
-            _elements = string.Empty;
-            _currentCode = string.Empty;
+            var users = JsonConvert.SerializeObject(UsersWorker.AccessUsers);
+            File.WriteAllText(_currentTemplatePath, UsersWorker.AllAccessObjects);
+            File.WriteAllText(_currentUsersPath, users);
+        }
 
-            foreach (var view in panel.Children)
+        private void InitialSetup()
+        {
+            string usersString = string.Empty;
+
+            if (File.Exists(_currentUsersPath))
+                usersString = File.ReadAllText(_currentUsersPath);
+
+            if (File.Exists(_currentTemplatePath))
+                UsersWorker.AllAccessObjects = File.ReadAllText(_currentTemplatePath);
+
+            Dictionary<string, MyUser> users = JsonConvert.DeserializeObject<Dictionary<string, MyUser>>(usersString);
+
+            if (users == null)
             {
-                if (view is StackPanel stack)
+                users = new Dictionary<string, MyUser>();
+
+                for (int i = 1; i <= _initialSubjectsCount; i++)
                 {
-                    foreach (var item in stack.Children)
+                    string name = $"User {i}";
+                    MyUser newUser = new MyUser(name, string.Empty, _initialTemplate);
+                    users.Add(name, newUser);
+                    UsersWorker.CurrentAccessObjects = _initialTemplate;
+                }
+            }
+            else
+                UsersWorker.CurrentAccessObjects = users.FirstOrDefault().Value.Template;
+
+            UsersWorker.AccessUsers = users;
+        }
+
+        private void SetupEvents()
+        {
+            foreach (DockPanel panel in MainStack.Children)
+            {
+                foreach (StackPanel stack in panel.Children.OfType<StackPanel>())
+                {
+                    foreach (CheckBox check in stack.Children.OfType<CheckBox>())
                     {
-                        if (item is CheckBox check)
-                        {
-                            _currentCode += check.IsChecked ?? false ? 1 : 0;
-                        }
-                        else if (item is Label label)
-                        {
-                            _elements += label.Content;
-                        }
+                        check.Checked += Check_Checked;
+                        check.Unchecked += Check_Checked;
                     }
+                }
+
+                foreach (RadioButton radio in panel.Children.OfType<RadioButton>())
+                {
+                    radio.Checked += Check_Checked;
+                }
+            }
+        }
+
+
+        private void SetupMainStack()
+        {
+            MainStack.Children.Clear();
+            _radios.Clear();
+            _panels.Clear();
+
+            Dictionary<string, MyUser> users = UsersWorker.AccessUsers;
+
+            foreach (var item in users)
+            {
+                UsersWorker.SetupDock(item.Value, "test", out DockPanel dockPanel, out RadioButton radio);
+
+                if (_panels.ContainsKey(item.Key))
+                    _panels[item.Key] = dockPanel;
+                else
+                    _panels.Add(item.Key, dockPanel);
+
+                _radios.Add(radio);
+
+                MainStack.Children.Add(dockPanel);
+            }
+
+            SetupEvents();
+        }
+
+        private void Check_Checked(object sender, RoutedEventArgs e)
+        {
+            _currentAccessUser = null;
+
+            Dictionary<string, MyUser> users = new Dictionary<string, MyUser>();
+
+            foreach (var item in MainStack.Children)
+            {
+                if (item is DockPanel dock)
+                {
+                    UsersWorker.SetupUser(dock, out MyUser myUser);
+                    users.Add(myUser.Name, myUser);
                 }
             }
 
-            _currentAccessUser = new MyUser(_currentCode, _elements);
+            UsersWorker.AccessUsers = users;
+
+            foreach (var panel in _panels)
+            {
+                if (_radios.FirstOrDefault(item => (string)item.Content == panel.Key).IsChecked ?? false)
+                    UsersWorker.SetupUser(panel.Value, out _currentAccessUser);
+            }
+
+            if (_currentAccessUser == null)
+                return;
+
+            OutputTB.Text = string.Empty;
+
+            foreach (var ch in InputTB.Text)
+            {
+                if (_currentAccessUser.AccessDictionary.ContainsKey(ch) && _currentAccessUser.AccessDictionary[ch] == 1)
+                    OutputTB.Text += ch;
+            }
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if (FirstRB.IsChecked ?? false)
-                SetupUser(Dock1);
-            if (SecondRB.IsChecked ?? false)
-                SetupUser(Dock2);
-            if (ThridRB.IsChecked ?? false)
-                SetupUser(Dock3);
+            _currentAccessUser = null;
+
+            foreach (var panel in _panels)
+            {
+                if (_radios.FirstOrDefault(item => (string)item.Content == panel.Key).IsChecked ?? false)
+                    UsersWorker.SetupUser(panel.Value, out _currentAccessUser);
+            }
+
+            if (_currentAccessUser == null)
+                return;
 
             OutputTB.Text = string.Empty;
 
@@ -63,12 +176,16 @@ namespace Pick_lab2
 
         private void InputTB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (FirstRB.IsChecked ?? false)
-                SetupUser(Dock1);
-            if (SecondRB.IsChecked ?? false)
-                SetupUser(Dock2);
-            if (ThridRB.IsChecked ?? false)
-                SetupUser(Dock3);
+            _currentAccessUser = null;
+
+            foreach (var panel in _panels)
+            {
+                if (_radios.FirstOrDefault(item => (string)item.Content == panel.Key).IsChecked ?? false)
+                    UsersWorker.SetupUser(panel.Value, out _currentAccessUser);
+            }
+
+            if (_currentAccessUser == null)
+                return;
 
             OutputTB.Text = string.Empty;
 
@@ -77,6 +194,21 @@ namespace Pick_lab2
                 if (_currentAccessUser.AccessDictionary.ContainsKey(ch) && _currentAccessUser.AccessDictionary[ch] == 1)
                     OutputTB.Text += ch;
             }
+        }
+
+        private void Window_Closed(object sender, System.EventArgs e)
+        {
+            SetupMainStack();
+            OutputTB.Text = string.Empty;
+            _currentAccessUser = null;
+            UpdateLayout();
+        }
+
+        private void TGButton_Click(object sender, RoutedEventArgs e)
+        {
+            TGWindow window = new TGWindow();
+            window.Closed += Window_Closed;
+            window.ShowDialog();
         }
     }
 }

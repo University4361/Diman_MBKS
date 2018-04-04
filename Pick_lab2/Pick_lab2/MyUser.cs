@@ -1,34 +1,42 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Pick_lab2
 {
-    class MyUser
+    public class MyUser
     {
-        private string _template;
-        public Dictionary<char, byte> AccessDictionary;
+        public string Template { get; set; }
+        public Dictionary<char, byte> AccessDictionary { get; set; }
+        public string Name { get; set; }
 
-        public MyUser(string accessString, string template)
+        public MyUser(string name, string accessString, string template)
         {
-            _template = template;
+            Name = name;
+            Template = template;
             InitializeDictionary(accessString);
+        }
+
+        [JsonConstructor]
+        public MyUser(Dictionary<char, byte> accessDictionary, string name, string template)
+        {
+            AccessDictionary = accessDictionary;
+            Name = name;
+            Template = template;
         }
 
         private void InitializeDictionary(string accessString)
         {
             AccessDictionary = new Dictionary<char, byte>();
 
-            for (int i = 0; i < _template.Count(); i++)
+            for (int i = 0; i < Template.Count(); i++)
             {
                 byte accessPoint = 0;
 
                 if (i <= accessString.Length - 1)
                     byte.TryParse(accessString[i].ToString(), out accessPoint);
 
-                if (AccessDictionary.ContainsKey(_template[i]))
-                    AccessDictionary[_template[i]] = accessPoint != 1 ? (byte)0 : accessPoint;
-                else
-                    AccessDictionary.Add(_template[i], accessPoint != 1 ? (byte)0 : accessPoint);
+                AccessDictionary.Add(Template[i], accessPoint != 1 ? (byte)0 : accessPoint);
             }
         }
     }
