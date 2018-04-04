@@ -32,6 +32,8 @@ namespace Kripta_Hex_Bin_Lav
                     counter++;
             }
 
+            ResultLabel.Content = string.Format("Ответ: {0}/{1} бит", counter, Math.Min(str1.Length, str2.Length));
+
             return counter / (double)Math.Min(str1.Length, str2.Length);
         }
 

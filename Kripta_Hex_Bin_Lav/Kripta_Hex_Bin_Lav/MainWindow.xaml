@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kripta_Hex_Bin_Lav"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Avalanche effect" Height="350" Width="525">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <TextBox Name="InitialTB" Height="221" Margin="10,46,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox Name="ChangedTB" HorizontalAlignment="Left" Height="221" Margin="10,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243" Grid.Column="1"/>
-        <TextBox Name="AnswerTB" Height="20" Margin="58,0,90,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
-        <Label Content="Ответ" HorizontalAlignment="Left" Margin="10,0,0,7" Height="26" VerticalAlignment="Bottom" Width="43"/>
+        <TextBox Name="InitialTB" Margin="10,46,10,35" TextWrapping="Wrap"/>
+        <TextBox Name="ChangedTB" Margin="10,46,10,35" TextWrapping="Wrap" Grid.Column="1"/>
+        <TextBox Name="AnswerTB" Height="20" Margin="139,0,90,10" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+        <Label Name="ResultLabel" Content="Ответ" HorizontalAlignment="Left" Margin="10,0,0,7" Height="26" VerticalAlignment="Bottom" Width="124"/>
         <Button Content="Рассчитать" Grid.Column="1" Margin="0,0,10,10" HorizontalAlignment="Right" Width="75" Height="20" VerticalAlignment="Bottom" Click="Button_Click"/>
         <Label Content="Initial" Margin="10,15,10,0" VerticalAlignment="Top"/>
         <Label Content="Changed" Grid.Column="1" Margin="10,15,10,0" VerticalAlignment="Top"/>
