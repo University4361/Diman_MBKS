@@ -28,6 +28,9 @@ namespace Lab_4
 
         public ObservableCollection<LabAccessRule> Rules { get; set; }
 
+        public ObservableCollection<int> Ids { get; set; }
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -59,6 +62,10 @@ namespace Lab_4
             else
                 ListOfDirectories = new ObservableCollection<DirectoryObject>();
 
+            Ids = new ObservableCollection<int>(ListOfDirectories.Select(item => item.Id));
+
+            ToCB.ItemsSource = Ids;
+            FromCB.ItemsSource = Ids;
             MainDataGrid.ItemsSource = ListOfDirectories;
             CBItem.ItemsSource = Rules;
         }
@@ -88,7 +95,11 @@ namespace Lab_4
 
             int count = Directory.CreateDirectory(resultPath).GetFiles().Length;
 
-            ListOfDirectories.Add(new DirectoryObject(Rules.FirstOrDefault(rule => rule.AccessID == 0), resultPath, count));
+            var newItem = new DirectoryObject(Rules.FirstOrDefault(rule => rule.AccessID == 0), resultPath, count);
+
+            ListOfDirectories.Add(newItem);
+
+            Ids.Add(newItem.Id);
         }
 
         private void DeleteClick(object sender, RoutedEventArgs e)
@@ -102,26 +113,31 @@ namespace Lab_4
             DirectoryObject currentDir = MainDataGrid.SelectedItem as DirectoryObject;
             currentDir.Dispose();
 
+            Ids.Remove(currentDir.Id);
+
+            ToCB.SelectedItem = null;
+            FromCB.SelectedItem = null;
+
             ListOfDirectories.Remove(currentDir);
         }
 
         private void CopyClick(object sender, RoutedEventArgs e)
         {
-            if (MainDataGrid.SelectedIndex < 0)
+            if (FromCB.SelectedItem == null)
             {
-                System.Windows.MessageBox.Show("Выберите исходную папку");
+                System.Windows.MessageBox.Show("Введите идентификатор исходной папки");
                 return;
             }
 
-            DirectoryObject currentDir = MainDataGrid.SelectedItem as DirectoryObject;
+            DirectoryObject currentDir = ListOfDirectories.FirstOrDefault(dir => dir.Id == FromCB.SelectedItem as int?);
 
-            if (string.IsNullOrEmpty(CopyToIdTB.Text))
+            if (ToCB.SelectedItem == null)
             {
                 System.Windows.MessageBox.Show("Введите идентификатор целевой папки");
                 return;
             }
 
-            DirectoryObject toDir = ListOfDirectories.FirstOrDefault(dir => dir.Id == int.Parse(CopyToIdTB.Text));
+            DirectoryObject toDir = ListOfDirectories.FirstOrDefault(dir => dir.Id == ToCB.SelectedItem as int?);
 
             if (toDir == null || toDir.Id == currentDir.Id)
             {
